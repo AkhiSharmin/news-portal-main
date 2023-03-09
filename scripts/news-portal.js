@@ -141,8 +141,10 @@ const showNewsDetails = newsDetails => {
         `;
 };
 
+// show trending news
 const showTrending = () => {
     const trendingNews = fetchData.filter(singleData => singleData.others_info.is_trending === true);
-    const categoryName = document.getElementById('category-name').innerText;
-    showAllNews(fetchData, categoryName)
+    const category_name = document.getElementById("category-name").innerText;
+    showAllNews(trendingNews, category_name);
+
 }
