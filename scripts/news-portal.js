@@ -40,7 +40,7 @@ const showAllNews = (data, category_name) => {
 
     data.forEach(singleNews => {
         const { _id, image_url, title, details, author, total_view, rating } = singleNews;
-        console.log(singleNews)
+        // console.log(singleNews)
         const card = document.createElement('div');
         card.classList.add("card", "mb-3");
         card.innerHTML = `
@@ -58,14 +58,14 @@ const showAllNews = (data, category_name) => {
                 <div class="d-flex gap-2">
                 <img src="${singleNews.author.img}" class="img-fluid rounded-circle" alt="..." height="35" width="40">
                 <div>
-                <P class="p-0 m-0">${singleNews.author.name}</p>
+                <P class="p-0 m-0">${author.name ? author.name : "Not Available"}</p>
                 <P class="p-0 m-0">${singleNews.author.published_date}</p>
                 </div>
                 </div>
 
                 <div class="d-flex align-items-center">
                 <i class="fa-solid fa-eye"></i>
-                <P class="p-0 m-0">${singleNews.total_view}</p>
+                <P class="p-0 m-0">${total_view ? total_view : "Not Available"}</p>
                 </div>
 
                 <div>
@@ -97,8 +97,8 @@ const fetchNewsDetails = news_id => {
 }
 
 const showNewsDetails = newsDetails => {
-    const { _id, image_url, title, details, author, total_view, rating } = newsDetails;
-    // console.log(newsDetails);
+    const { _id, image_url, title, details, author, total_view, rating, others_info } = newsDetails;
+    console.log(newsDetails);
     document.getElementById('modal-body').innerHTML = `
        <div class="card", "mb-3">
        <div class="row g-0">
@@ -107,7 +107,7 @@ const showNewsDetails = newsDetails => {
        </div>
        <div class="col-md-12 d-flex flex-column">
          <div class="card-body">
-           <h5 class="card-title">Title :${title}</h5>
+           <h5 class="card-title">Title :${title} <span class="badge text-bg-warning">${others_info.is_trending && "Trending"}</span></h5>
            <p class="card-text">${details}....</p>
          </div>
 
@@ -115,14 +115,14 @@ const showNewsDetails = newsDetails => {
              <div class="d-flex gap-2">
              <img src="${author.img}" class="img-fluid rounded-circle" alt="..." height="35" width="40">
              <div>
-             <P class="p-0 m-0">${author.name}</p>
+             <P class="p-0 m-0">${author.name ? author.name : "Not Available Name"}</p>
              <P class="p-0 m-0">${author.published_date}</p>
              </div>
              </div>
 
              <div class="d-flex align-items-center">
              <i class="fa-solid fa-eye"></i>
-             <P class="p-0 m-0">${total_view}</p>
+             <P class="p-0 m-0">${total_view ? total_view : "Not Available"}</p>
              </div>
 
              <div>
